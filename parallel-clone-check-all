@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [ "$#" -ne 1 ]; then
+    echo "$0 <list_filename>"
+    exit 1
+fi
+
+DIR=$(dirname "$(readlink -f "$0")")
+
+parallel -j 10 "$DIR/clone-check-all" :::: "$1"

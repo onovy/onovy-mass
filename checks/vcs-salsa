@@ -1,0 +1,66 @@
+#!/bin/bash
+
+if [ ! -d .git ] ; then
+    echo "Not git!"
+    exit 1
+fi
+
+URL=https://salsa.debian.org
+REMOTE=$(git config --get remote.origin.url)
+if [[ ! "$REMOTE" =~ "//" ]] ; then
+    REMOTE=${REMOTE/:/\/}
+    REMOTE=ssh://$REMOTE
+fi
+HOST=$(echo "$REMOTE" | cut -d / -f 3)
+if [[ ! "$HOST" =~ .*@?salsa.debian.org ]] ; then
+    echo "Not salsa.debian.org remote: $HOST!"
+    exit 2
+fi
+REPO=$(echo "$REMOTE" | cut -d / -f 4-)
+if [[ ! "$REPO" =~ .*\.git ]] ; then
+    REPO=${REPO}.git
+fi
+BROWSER=${REPO%.git}
+
+MESSAGE=""
+
+# Vcs-Svn
+sed -i '/^Vcs-Svn/d' debian/control
+
+# Vcs-Git missing
+if ! grep-dctrl -q -F Vcs-Git '' debian/control ; then
+    MESSAGE="d/control: Add Vcs-* field"
+    sed -i "0,/^\$/{s#^\$#Vcs-Git: $URL/$REPO\\n#}" debian/control
+fi
+
+# Vcs-Browser missing
+if ! grep-dctrl -q -F Vcs-Browser '' debian/control ; then
+    MESSAGE="d/control: Add Vcs-* field"
+    sed -i "0,/^\$/{s#^\$#Vcs-Browser: $URL/$BROWSER\\n#}" debian/control
+fi
+
+# Vcs-Git doesn't point do salsa.debian.org
+if ! grep-dctrl -q -F Vcs-Git 'salsa.debian.org' debian/control ; then
+    MESSAGE="d/control: Set Vcs-* to salsa.debian.org"
+    sed -i "s#\(^Vcs-Git:\).*#\1 $URL/$REPO#g" debian/control
+fi
+
+# Vcs-Browser doesn't point do salsa.debian.org
+if ! grep-dctrl -q -F Vcs-Browser 'salsa.debian.org' debian/control ; then
+    MESSAGE="d/control: Set Vcs-* to salsa.debian.org"
+    sed -i "s#\(^Vcs-Browser:\).*#\1 $URL/$BROWSER#g" debian/control
+fi
+
+# Vcs-Git is wrong
+if ! grep-dctrl -q -F Vcs-Git "$URL/$BROWSER" debian/control ; then
+    MESSAGE="d/control: Fix wrong Vcs-*"
+    sed -i "s#\(^Vcs-Git:\).*#\1 $URL/$REPO#g" debian/control
+fi
+
+# Vcs-Browser is wrong
+if ! grep-dctrl -q -F Vcs-Browser "$URL/$BROWSER" debian/control ; then
+    MESSAGE="d/control: Fix wrong Vcs-*"
+    sed -i "s#\(^Vcs-Browser:\).*#\1 $URL/$BROWSER#g" debian/control
+fi
+
+echo "$MESSAGE"

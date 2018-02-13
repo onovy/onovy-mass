@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# OpenStack
+if grep-dctrl -q -F Maintainer "openstack-devel@lists.alioth.debian.org" debian/control ; then
+    wrap-and-sort -bast
+    echo "Running wrap-and-sort -bast"
+fi

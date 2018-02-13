@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# TODO: Do not dch if it's first changelog (Initial release)
+
+if [ "$#" -ne 1 ]; then
+    echo "$0 <message>"
+    exit 1
+fi
+
+MESSAGE=$1
+
+if [ -n "$(git diff)" ] ; then
+    dch --no-auto-nmu "$MESSAGE"
+    git add debian/
+    git commit -m "$MESSAGE"
+    git --no-pager show
+    exit 0
+fi
+
+exit 1

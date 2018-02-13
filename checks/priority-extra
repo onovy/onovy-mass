@@ -1,0 +1,5 @@
+#!/bin/bash
+
+sed -i "s#\(^Priority: *\)extra\$#\1optional#g" debian/control
+
+echo "d/control: Deprecating priority extra as per policy 4.0.1"
