@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# TODO: Do not dch if it's first changelog (Initial release)
-
 if [ "$#" -ne 1 ]; then
     echo "$0 <message>"
     exit 1
@@ -11,8 +9,20 @@ MESSAGE=$1
 
 if [ -n "$(git diff)" ] ; then
     CHANGELOG=$(dpkg-parsechangelog)
-    if ! echo "$CHANGELOG" | grep -q '^Distribution: UNRELEASED$' ||
-            ! echo "$CHANGELOG" | grep '^  ' | sed 's/   \* //' | grep -q "$MESSAGE" ; then
+
+    cat debian/changelog | grep '^ --' | wc -l | grep -q "^1$"
+    ONE_ENTRY=$?
+
+    echo "$CHANGELOG" | grep -q '^Distribution: UNRELEASED$'
+    UNRELEASED=$?
+
+    echo "$CHANGELOG" | grep '^  ' | sed 's/   \* //' | grep -q "$MESSAGE"
+    PRESENT=$?
+
+    if ! (
+            ([ $UNRELEASED -eq 0 ] && [ $PRESENT -eq 0 ]) || \
+            ([ $ONE_ENTRY -eq 0 ] && [ $UNRELEASED -eq 0 ])
+         ); then
         dch --no-auto-nmu "$MESSAGE"
     fi
     git add debian/
