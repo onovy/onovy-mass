@@ -16,7 +16,7 @@ if [ -n "$(git diff)" ] ; then
     echo "$CHANGELOG" | grep -q '^Distribution: UNRELEASED$'
     UNRELEASED=$?
 
-    echo "$CHANGELOG" | grep '^  ' | sed 's/   \* //' | grep -q "$MESSAGE"
+    echo "$CHANGELOG" | grep '^  ' | sed 's/   \* //' | grep -F -q "$MESSAGE"
     PRESENT=$?
 
     if ! (
