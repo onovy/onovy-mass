@@ -10,7 +10,11 @@ fi
 MESSAGE=$1
 
 if [ -n "$(git diff)" ] ; then
-    dch --no-auto-nmu "$MESSAGE"
+    CHANGELOG=$(dpkg-parsechangelog)
+    if ! echo "$CHANGELOG" | grep -q '^Distribution: UNRELEASED$' ||
+            ! echo "$CHANGELOG" | grep '^  ' | sed 's/   \* //' | grep -q "$MESSAGE" ; then
+        dch --no-auto-nmu "$MESSAGE"
+    fi
     git add debian/
     git commit -m "$MESSAGE"
     git --no-pager show
