@@ -1,5 +1,16 @@
 #!/bin/bash
 
-sed -i "s#\(^Priority: *\)extra\$#\1optional#g" debian/control
 
-echo "d/control: Deprecating priority extra as per policy 4.0.1"
+MESSAGE="d/control: Removing redundant Priority field in binary package"
+
+if grep-dctrl -q -F Priority 'extra' debian/control ; then
+    MESSAGE='d/control: Deprecating priority extra as per policy 4.0.1'
+    sed -i "s#\(^Priority: *\)extra\$#\1optional#g" debian/control
+fi
+
+PRIORITY=$(grep-dctrl -F Source '' debian/control | grep '^Priority' | sed 's/.*: *//')
+if [ -n "$PRIORITY" ] && grep-dctrl -q -F Package '' -and -F Priority "$PRIORITY" debian/control ; then
+    sed -i "/^\$/,\${/^Priority: *$PRIORITY/d}" debian/control
+fi
+
+echo "$MESSAGE"
