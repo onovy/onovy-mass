@@ -6,7 +6,7 @@ if [ ! -d .git ] ; then
 fi
 
 URL=https://salsa.debian.org
-REMOTE=$(git config --get remote.origin.url)
+REMOTE=$(git remote get-url --push origin)
 if [[ ! "$REMOTE" =~ "//" ]] ; then
     REMOTE=${REMOTE/:/\/}
     REMOTE=ssh://$REMOTE
