@@ -23,7 +23,15 @@ if [ -n "$(git diff)" ] ; then
             ([ $UNRELEASED -eq 0 ] && [ $PRESENT -eq 0 ]) || \
             ([ $ONE_ENTRY -eq 0 ] && [ $UNRELEASED -eq 0 ])
          ); then
-        dch --no-auto-nmu "$MESSAGE"
+
+        MAINTAINER=$(grep-dctrl -n -F Maintainer '' -s Maintainer debian/control)
+        case $MAINTAINER in
+            *debian-multimedia@lists.debian.org*) ;;
+            *pkg-multimedia-maintainers@lists.alioth.debian.org*) ;;
+            *)
+                dch --no-auto-nmu "$MESSAGE"
+            ;;
+        esac
     fi
     git add debian/
     git commit -m "$MESSAGE"
