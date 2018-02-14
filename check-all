@@ -17,6 +17,10 @@ fi
 for CHECK in $DIR/checks/* ; do
     NAME=$(basename "$CHECK")
     echo "##### $NAME #####"
+    if [ ! -x "$CHECK" ] ; then
+        echo "Not executable, skipping..."
+        continue
+    fi
     OUT=$($CHECK)
     STATUS=$?
     if [ $STATUS -eq 0 ] ; then
