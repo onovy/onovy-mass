@@ -3,7 +3,7 @@
 sed -i "s#\(^Format: *\)http:#\1https:#g" debian/copyright
 MESSAGE="d/copyright: Use https protocol in Format field"
 
-if ! grep-dctrl -q -F Format "https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/" debian/copyright ; then
+if ! grep-dctrl -q -F Format "https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/" debian/copyright 2>/dev/null ; then
     sed -i "s#\(^Format: \).*#\1https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/#g" debian/copyright
     MESSAGE="d/copyright: Change Format URL to correct one"
 fi
