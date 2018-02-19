@@ -26,17 +26,18 @@ MESSAGE=""
 
 # Vcs-Svn
 sed -i '/^Vcs-Svn/d' debian/control
-
-# Vcs-Git missing
-if ! grep-dctrl -q -F Vcs-Git '' debian/control ; then
-    MESSAGE="d/control: Add Vcs-* field"
-    sed -i "0,/^\$/{s#^\$#Vcs-Git: $URL/$REPO\\n#}" debian/control
-fi
+MESSAGE="d/control: Remove Vcs-Svn field"
 
 # Vcs-Browser missing
 if ! grep-dctrl -q -F Vcs-Browser '' debian/control ; then
     MESSAGE="d/control: Add Vcs-* field"
     sed -i "0,/^\$/{s#^\$#Vcs-Browser: $URL/$BROWSER\\n#}" debian/control
+fi
+
+# Vcs-Git missing
+if ! grep-dctrl -q -F Vcs-Git '' debian/control ; then
+    MESSAGE="d/control: Add Vcs-* field"
+    sed -i "0,/^\$/{s#^\$#Vcs-Git: $URL/$REPO\\n#}" debian/control
 fi
 
 # Vcs-Git doesn't point do salsa.debian.org
