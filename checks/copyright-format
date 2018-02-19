@@ -5,7 +5,7 @@ MESSAGE="d/copyright: Use https protocol in Format field"
 
 if ! grep-dctrl -q -F Format "https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/" debian/copyright ; then
     sed -i "s#\(^Format: \).*#\1https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/#g" debian/copyright
-    MESSAGE="d/copyright: Fix Format URL to correct one"
+    MESSAGE="d/copyright: Change Format URL to correct one"
 fi
 
 echo "$MESSAGE"
