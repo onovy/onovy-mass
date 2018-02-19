@@ -1,0 +1,7 @@
+Source: dummy-package
+Section: net
+Priority: optional
+Maintainer: openstack-devel@lists.alioth.debian.org
+Uploaders:
+ b <b@debian.org>,
+ a <a@debian.org>,

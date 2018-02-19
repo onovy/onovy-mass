@@ -1,0 +1,6 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: upstream
+
+Files: debian/*
+Copyright: (c) 2010-2017, M <m@debian.org>
+           (c) 2015-2017, #DEBFULLNAME# <#DEBEMAIL#>

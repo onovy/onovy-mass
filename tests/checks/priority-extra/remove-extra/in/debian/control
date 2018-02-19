@@ -1,0 +1,11 @@
+Source: dummy-package
+Priority: optional
+Description: dummy-package description
+
+Package: dummy-binary-package
+Priority: extra
+Description: dummy-binary-package description
+
+Package: dummy-binary-package2
+Priority: standard
+Description: dummy-binary-package2 description

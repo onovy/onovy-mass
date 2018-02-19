@@ -1,0 +1,6 @@
+Source: dummy-package
+Section: net
+Priority: optional
+Maintainer: Maintainer <m@debian.org>
+Uploaders: b <b@debian.org>,
+           a <a@debian.org>

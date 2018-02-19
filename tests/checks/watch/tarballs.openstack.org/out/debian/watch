@@ -1,0 +1,3 @@
+version=3
+https://tarballs.openstack.org/project/ swift-(\d[\d\.]+.*)\.(?:zip|tgz|tbz|txz|(?:tar\.(?:gz|bz2|xz)))
+http://example.com/ .*

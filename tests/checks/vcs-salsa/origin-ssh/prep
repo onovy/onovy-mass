@@ -1,0 +1,4 @@
+#!/bin/bash
+
+git init >/dev/null
+git remote add origin ssh://git@salsa.debian.org/debian/project.git

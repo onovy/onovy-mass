@@ -1,0 +1,5 @@
+dummy-package (1.0-1) UNRELEASED; urgency=medium
+
+  * Initial release. (Closes: #123)
+
+ -- Ondřej Nový <onovy@debian.org>  Mon, 19 Feb 2018 14:19:41 +0100
