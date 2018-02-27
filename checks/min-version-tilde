@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# OpenStack
+if ! grep-dctrl -q -F Maintainer "openstack-devel@lists.alioth.debian.org" debian/control ; then
+    exit 0
+fi
+
+NATIVE_PACKAGES=( openstack-pkg-tools debhelper )
+for PACKAGE in "${NATIVE_PACKAGES[@]}" ; do
+    sed -i "s/\\($PACKAGE *[(] *>= *[0-9.]\\+\\)[)]/\\1~)/g" debian/control
+done
+
+echo "Add trailing tilde to min version depend to allow backports"
