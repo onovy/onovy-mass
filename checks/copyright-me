@@ -1,6 +1,16 @@
 #!/bin/bash
 
+if [ ! -d .git ] ; then
+    echo "Not git!"
+    exit 1
+fi
+
 CURRENT_YEAR=$(date +%Y)
+
+LAST_COMMIT_YEAR=$(git log --author "$DEBEMAIL" --pretty=format:%ad --date=iso 2>/dev/null | head -n 1 | cut -d'-' -f1)
+if [ "$CURRENT_YEAR" != "$LAST_COMMIT_YEAR" ] ; then
+    exit 0
+fi
 
 sed -i "s/\((c) *[0-9][0-9][0-9][0-9]\)\(, *$DEBFULLNAME <$DEBEMAIL>\)/\\1-$CURRENT_YEAR\2/g" debian/copyright
 sed -i "s/\((c) *[0-9][0-9][0-9][0-9]-\)[0-9][0-9][0-9][0-9]\(, *$DEBFULLNAME <$DEBEMAIL>\)/\\1$CURRENT_YEAR\2/g" debian/copyright

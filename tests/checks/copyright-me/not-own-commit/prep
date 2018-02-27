@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Git
+git init >/dev/null
+git commit --author "Not developer <dummy@email.com>" -m "Dummy commit" --allow-empty >/dev/null

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Git
+git init >/dev/null
