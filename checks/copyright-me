@@ -1,8 +1,6 @@
 #!/bin/bash
 
-if [ -z "$CURRENT_YEAR" ] ; then
-    CURRENT_YEAR=$(date +%Y)
-fi
+CURRENT_YEAR=$(date +%Y)
 
 sed -i "s/\((c) *[0-9][0-9][0-9][0-9]\)\(, *$DEBFULLNAME <$DEBEMAIL>\)/\\1-$CURRENT_YEAR\2/g" debian/copyright
 sed -i "s/\((c) *[0-9][0-9][0-9][0-9]-\)[0-9][0-9][0-9][0-9]\(, *$DEBFULLNAME <$DEBEMAIL>\)/\\1$CURRENT_YEAR\2/g" debian/copyright

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Git
+git init >/dev/null
+git commit --author "$DEBFULLNAME <$DEBEMAIL>" -m "Dummy commit" --allow-empty >/dev/null
+
+# Current year
+CURRENT_YEAR=$(date +%Y)
+sed -i "s/#CURRENT_YEAR#/$CURRENT_YEAR/g" debian/copyright
+sed -i "s/#CURRENT_YEAR#/$CURRENT_YEAR/g" ../test.out/debian/copyright

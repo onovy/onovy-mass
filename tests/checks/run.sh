@@ -4,7 +4,6 @@ DIR=$(dirname "$(readlink -f "$0")")
 
 export DEBFULLNAME="#DEBFULLNAME#"
 export DEBEMAIL="#DEBEMAIL#"
-export CURRENT_YEAR="#CURRENT_YEAR#"
 
 PASS=0
 FAIL=0
@@ -21,10 +20,15 @@ for CHECK in $DIR/* ; do
         fi
         pushd "$TEST" >/dev/null
         echo -n $(basename "$TEST")": "
-        rm -rf test
-        cp -r in test
+        rm -rf test.in test.out
+        cp -r in test.in
+        if [ -d "out" ] ; then
+            cp -r out test.out
+        else
+            cp -r in test.out
+        fi
 
-        pushd test >/dev/null
+        pushd test.in >/dev/null
         if [ -x ../prep ] ; then
             ../prep
         fi
@@ -33,11 +37,7 @@ for CHECK in $DIR/* ; do
         popd >/dev/null
 
         EXP_MESSAGE=$(cat message 2>/dev/null)
-        if [ -d "out" ] ; then
-            DIFF=$(diff -Naur --exclude=.git test out)
-        else
-            DIFF=$(diff -Naur --exclude=.git test in)
-        fi
+        DIFF=$(diff -Naur --exclude=.git test.in test.out)
 
         if [ "$STATUS" -ne 0 ] ; then
             if [ -e "fail" ] ; then
@@ -63,7 +63,7 @@ for CHECK in $DIR/* ; do
             echo "OK"
         fi
 
-        rm -rf test
+        rm -rf test.in test.out
         popd >/dev/null
     done
 done
