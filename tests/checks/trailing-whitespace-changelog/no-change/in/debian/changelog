@@ -1,0 +1,5 @@
+PACKAGE (VERSION) UNRELEASED; urgency=medium
+
+  * Initial release. (Closes: #XXXXXX)
+
+ -- Maintainer <m@debian.org>  Wed, 28 Feb 2018 22:45:16 +0100

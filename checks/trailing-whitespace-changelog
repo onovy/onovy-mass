@@ -1,0 +1,4 @@
+#!/bin/bash
+
+sed -i -e 's@[[:space:]]*$@@g' debian/changelog
+echo "d/changelog: Remove trailing whitespaces"
