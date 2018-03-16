@@ -1,0 +1,4 @@
+#!/bin/bash
+
+sed -i "/^Testsuite: *autopkgtest *$/d" debian/control
+echo "d/control: Remove Testsuite field, not needed anymore"
