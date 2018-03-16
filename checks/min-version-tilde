@@ -5,7 +5,7 @@ if ! grep-dctrl -q -F Maintainer "openstack-devel@lists.alioth.debian.org" debia
     exit 0
 fi
 
-NATIVE_PACKAGES=( openstack-pkg-tools debhelper )
+NATIVE_PACKAGES=( openstack-pkg-tools )
 for PACKAGE in "${NATIVE_PACKAGES[@]}" ; do
     sed -i "s/\\($PACKAGE *[(] *>= *[0-9.]\\+\\)[)]/\\1~)/g" debian/control
 done
