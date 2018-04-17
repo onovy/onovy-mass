@@ -1,0 +1,5 @@
+#!/bin/bash
+
+sed -i 's/$ADT_ARTIFACTS/$AUTOPKGTEST_ARTIFACTS/g' debian/tests/* 2>/dev/null
+sed -i 's/${ADT_ARTIFACTS}/${AUTOPKGTEST_ARTIFACTS}/g' debian/tests/* 2>/dev/null
+echo "d/tests: Use AUTOPKGTEST_ARTIFACTS instead of ADT_ARTIFACTS"
