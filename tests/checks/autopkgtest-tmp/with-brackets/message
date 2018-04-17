@@ -1,0 +1,1 @@
+d/tests: Use AUTOPKGTEST_TMP instead of ADTTMP

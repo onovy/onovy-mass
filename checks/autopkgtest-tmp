@@ -1,0 +1,5 @@
+#!/bin/bash
+
+sed -i 's/$ADTTMP/$AUTOPKGTEST_TMP/g' debian/tests/* 2>/dev/null
+sed -i 's/${ADTTMP}/${AUTOPKGTEST_TMP}/g' debian/tests/* 2>/dev/null
+echo "d/tests: Use AUTOPKGTEST_TMP instead of ADTTMP"
