@@ -1,18 +1,18 @@
 Source: dummy-package
 Priority: optional
-Maintainer: Debian OpenStack <openstack-devel@lists.alioth.debian.org>
+Maintainer: Debian OpenStack <team+openstack@tracker.debian.org>
 Description: dummy-package description
 Build-Depends:
- debhelper (>= 11~),
+ openstack-pkg-tools (>= 11),
 
 Package: dummy-binary-package
 Priority: important
 Description: dummy-binary-package description
 Depends:
- debhelper (>= 11~),
+ openstack-pkg-tools (>= 11),
 
 Package: dummy-binary-package2
 Priority: standard
 Description: dummy-binary-package2 description
 Depends:
- debhelper (>= 11~)
+ openstack-pkg-tools (>= 11)

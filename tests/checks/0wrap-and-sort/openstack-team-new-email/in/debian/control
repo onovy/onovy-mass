@@ -1,6 +1,6 @@
 Source: dummy-package
 Section: net
 Priority: optional
-Maintainer: Debian OpenStack <openstack-devel@lists.alioth.debian.org>
+Maintainer: Debian OpenStack <team+openstack@tracker.debian.org>
 Uploaders: b <b@debian.org>,
            a <a@debian.org>

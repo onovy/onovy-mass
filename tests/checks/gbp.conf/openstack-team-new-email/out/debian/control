@@ -1,0 +1,4 @@
+Source: dummy-package
+Section: net
+Priority: optional
+Maintainer: Debian OpenStack <team+openstack@tracker.debian.org>

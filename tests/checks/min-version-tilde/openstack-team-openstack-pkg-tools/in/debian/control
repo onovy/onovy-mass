@@ -1,6 +1,6 @@
 Source: dummy-package
 Priority: optional
-Maintainer: openstack-devel@lists.alioth.debian.org
+Maintainer: Debian OpenStack <openstack-devel@lists.alioth.debian.org>
 Description: dummy-package description
 Build-Depends:
  openstack-pkg-tools (>= 11),

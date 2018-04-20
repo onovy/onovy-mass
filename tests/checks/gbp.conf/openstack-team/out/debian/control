@@ -1,4 +1,4 @@
 Source: dummy-package
 Section: net
 Priority: optional
-Maintainer: openstack-devel@lists.alioth.debian.org
+Maintainer: Debian OpenStack <openstack-devel@lists.alioth.debian.org>
