@@ -1,0 +1,4 @@
+Source: dummy-package
+Priority: optional
+Description: dummy-package description
+Maintainer: Debian Multimedia Team <pkg-multimedia-maintainers@lists.alioth.debian.org>
