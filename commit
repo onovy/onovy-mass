@@ -28,6 +28,7 @@ if [ -n "$(git diff)" ] || [ "$2" == "--test" ] ; then
         case $MAINTAINER in
             *debian-multimedia@lists.debian.org*) ;;
             *pkg-multimedia-maintainers@lists.alioth.debian.org*) ;;
+            *debian-multimedia@lists.debian.org*) ;;
             *pkg-salt-team@lists.alioth.debian.org*) ;;
             *)
                 dch --no-auto-nmu "$MESSAGE"
