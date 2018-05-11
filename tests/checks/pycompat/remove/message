@@ -1,0 +1,1 @@
+Remove debian/pycompat, it's not used by any modern Python helper
