@@ -1,0 +1,4 @@
+Source: dummy-package
+Priority: optional
+Description: dummy-package description
+XS-Python-Version: >= 2.7
