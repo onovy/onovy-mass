@@ -1,0 +1,5 @@
+#!/bin/bash
+
+sed -i "/^X-Python-Version: *>= *2\\.[0-7].*$/d" debian/control
+sed -i "/^X-Python-Version: *>> *2\\.[0-6].*$/d" debian/control
+echo "d/control: Remove ancient X-Python-Version field"
