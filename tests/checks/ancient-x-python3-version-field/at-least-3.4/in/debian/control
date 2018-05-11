@@ -1,0 +1,4 @@
+Source: dummy-package
+Priority: optional
+Description: dummy-package description
+X-Python3-Version: >= 3.4
