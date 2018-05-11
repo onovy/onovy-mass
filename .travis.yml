@@ -1,0 +1,7 @@
+addons:
+  apt:
+    packages:
+    - dctrl-tools
+    - devscripts
+    - python3-debian
+script: tests/run.sh
