@@ -9,3 +9,13 @@ if grep-dctrl -q -F Maintainer "pkg-multimedia-maintainers@lists.alioth.debian.o
     sed -i "s#\(^Maintainer:\).*#\1 Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>#g" debian/control
     echo "d/control: Change Maintainer from @lists.alioth.debian.org to @lists.debian.org"
 fi
+
+# Openstack Team
+if grep-dctrl -q -F Maintainer "team+openstack@tracker.debian.org" debian/control ; then
+    sed -i "s#\(^Maintainer:\).*#\1 Debian OpenStack <team+openstack@tracker.debian.org>#g" debian/control
+    echo "d/control: Unify Maintainer field to Debian OpenStack"
+fi
+if grep-dctrl -q -F Maintainer "openstack-devel@lists.alioth.debian.org" debian/control ; then
+    sed -i "s#\(^Maintainer:\).*#\1 Debian OpenStack <team+openstack@tracker.debian.org>#g" debian/control
+    echo "d/control: Change Maintainer from @lists.alioth.debian.org to @tracker.debian.org"
+fi
