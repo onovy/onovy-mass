@@ -1,1 +1,1 @@
-d/control: Change Maintainer from @lists.alioth.debian.org to @tracker.debian.org
+d/control: Use team+openstack@tracker.debian.org as maintainer
