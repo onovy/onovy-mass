@@ -7,4 +7,3 @@ git commit --author "$DEBFULLNAME <$DEBEMAIL>" -m "Dummy commit" --allow-empty >
 # Current year
 CURRENT_YEAR=$(date +%Y)
 sed -i "s/#CURRENT_YEAR#/$CURRENT_YEAR/g" debian/copyright
-sed -i "s/#CURRENT_YEAR#/$CURRENT_YEAR/g" ../test.out/debian/copyright

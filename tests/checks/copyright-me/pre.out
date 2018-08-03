@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Current year
+CURRENT_YEAR=$(date +%Y)
+sed -i "s/#CURRENT_YEAR#/$CURRENT_YEAR/g" debian/copyright

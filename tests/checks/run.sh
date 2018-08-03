@@ -22,16 +22,26 @@ for CHECK in $DIR/* ; do
         echo -n $(basename "$TEST")": "
         rm -rf test.in test.out
         cp -r in test.in
-        if [ -d "out" ] ; then
-            cp -r out test.out
-        else
-            cp -r in test.out
+
+        # Pre hook IN
+        pushd test.in >/dev/null
+        if [ -x ../pre.in ] ; then
+            ../pre.in
         fi
 
-        pushd test.in >/dev/null
-        if [ -x ../prep ] ; then
-            ../prep
+        if [ -d "../out" ] ; then
+            cp -r ../out ../test.out
+        else
+            cp -r . ../test.out
         fi
+
+        # Pre hook OUT
+        pushd ../test.out >/dev/null
+        if [ -x ../pre.out ] ; then
+            ../pre.out
+        fi
+        popd >/dev/null
+
         MESSAGE=$(../../../../../checks/$CHECK_NAME)
         STATUS=$?
         popd >/dev/null
