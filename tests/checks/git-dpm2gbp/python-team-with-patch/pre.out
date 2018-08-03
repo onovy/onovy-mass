@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Not git-dpm
+rm debian/.git-dpm
+
+# Patches unapplied format
+echo "dummy" >dummy

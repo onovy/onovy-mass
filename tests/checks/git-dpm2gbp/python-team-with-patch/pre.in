@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Git
+git init >/dev/null
+git add . >/dev/null
+git rm -r --cached debian/ >/dev/null
+git commit -m "import dummy_0.orig.tar.gz" >/dev/null
+git checkout -b upstream >/dev/null 2>&1
+pristine-tar commit ../dummy_0.orig.tar.gz >/dev/null 2>&1
+
+# git-dpm
+git-dpm init ../dummy_0.orig.tar.gz >/dev/null 2>&1
+
+# debian/*
+git add debian/* >/dev/null
+git commit -m 'Debian dummy package' >/dev/null
+git-dpm prepare >/dev/null 2>&1
+
+# patch
+git-dpm checkout-patched >/dev/null 2>&1
+echo "dummy2" >dummy
+git add dummy
+git commit -m 'dummy patch' >/dev/null
+git-dpm update-patches >/dev/null 2>&1

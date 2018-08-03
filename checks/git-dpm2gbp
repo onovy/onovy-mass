@@ -1,0 +1,18 @@
+#!/bin/bash
+
+if ! [ -a "debian/.git-dpm" ] ; then
+    exit
+fi
+
+git-dpm status >/dev/null 2>&1 || exit 1
+
+# Python
+if grep-dctrl -q -F Maintainer "python-modules-team@lists.alioth.debian.org" debian/control ||
+   grep-dctrl -q -F Uploaders "python-modules-team@lists.alioth.debian.org" debian/control
+   then
+    git read-tree --reset -u upstream >/dev/null
+    git reset -- debian >/dev/null
+    git checkout debian >/dev/null
+    rm debian/.git-dpm
+    echo "Convert git repository from git-dpm to gbp layout"
+fi
