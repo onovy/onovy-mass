@@ -31,6 +31,8 @@ for CHECK in $DIR/checks/* ; do
         fi
     else
         echo "ERROR: $OUT"
+        git checkout .
+        git clean -df
     fi
 done
 
