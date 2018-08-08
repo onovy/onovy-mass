@@ -4,13 +4,21 @@ if ! [ -a "debian/.git-dpm" ] ; then
     exit
 fi
 
-git-dpm status >/dev/null 2>&1 || exit 1
+# Check upstream branch exists
+if git rev-parse --verify upstream >/dev/null 2>&1 ; then
+    UPSTREAM=upstream
+elif git rev-parse --verify origin/upstream >/dev/null 2>&1 ; then
+    UPSTREAM=origin/upstream
+else
+    echo "upstream branch doesn't exists"
+    exit 1
+fi
 
 # Python
 if grep-dctrl -q -F Maintainer "python-modules-team@lists.alioth.debian.org" debian/control ||
    grep-dctrl -q -F Uploaders "python-modules-team@lists.alioth.debian.org" debian/control
    then
-    git read-tree --reset -u upstream >/dev/null
+    git read-tree --reset -u "$UPSTREAM" >/dev/null
     git reset -- debian >/dev/null
     git checkout debian >/dev/null
     rm debian/.git-dpm
