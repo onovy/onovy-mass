@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Git
+git init >/dev/null
+
+# Broke git-dpm
+echo "broken" >debian/.git-dpm
+git add debian/* >/dev/null
+git commit -m 'Broke git-dpm' >/dev/null

@@ -16,7 +16,9 @@ fi
 
 # Python
 if grep-dctrl -q -F Maintainer "python-modules-team@lists.alioth.debian.org" debian/control ||
-   grep-dctrl -q -F Uploaders "python-modules-team@lists.alioth.debian.org" debian/control
+   grep-dctrl -q -F Uploaders "python-modules-team@lists.alioth.debian.org" debian/control ||
+   grep-dctrl -q -F Maintainer "python-apps-team@lists.alioth.debian.org" debian/control ||
+   grep-dctrl -q -F Uploaders "python-apps-team@lists.alioth.debian.org" debian/control
    then
     git read-tree --reset -u "$UPSTREAM" >/dev/null
     git reset -- debian >/dev/null

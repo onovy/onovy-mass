@@ -1,0 +1,5 @@
+dummy (0) UNRELEASED; urgency=medium
+
+  * Initial release. (Closes: #XXXXXX)
+
+ -- Ondřej Nový <onovy@debian.org>  Fri, 03 Aug 2018 03:37:32 +0200
