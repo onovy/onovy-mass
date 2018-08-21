@@ -7,12 +7,16 @@ export DEBEMAIL="#DEBEMAIL#"
 
 PASS=0
 FAIL=0
+CHECK_ONLY=$1
 
 for CHECK in $DIR/* ; do
     if [ ! -d "$CHECK" ] ; then
         continue
     fi
     CHECK_NAME=$(basename "$CHECK")
+    if [ "$CHECK_ONLY" ] && [ "$CHECK_ONLY" != "$CHECK_NAME" ] ; then
+        continue
+    fi
     echo "###### $CHECK_NAME ######"
     for TEST in $CHECK/* ; do
         if [ ! -d "$TEST" ] ; then
