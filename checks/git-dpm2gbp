@@ -9,6 +9,8 @@ if git rev-parse --verify upstream >/dev/null 2>&1 ; then
     UPSTREAM=upstream
 elif git rev-parse --verify origin/upstream >/dev/null 2>&1 ; then
     UPSTREAM=origin/upstream
+elif git rev-parse --verify origin/upstream/latest >/dev/null 2>&1 ; then
+    UPSTREAM=origin/upstream/latest
 else
     echo "upstream branch doesn't exists"
     exit 1
