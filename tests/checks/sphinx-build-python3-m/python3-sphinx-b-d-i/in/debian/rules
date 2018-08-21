@@ -1,0 +1,23 @@
+#!/usr/bin/make -f
+
+override_dh_sphinxdoc:
+	sphinx-build src out
+	sphinx-build
+	sphinx-builder
+	resphinx-build
+        sphinx-build	src out
+        sphinx-build
+        sphinx-builder	src out
+        sphinx-builder
+        resphinx-build
+        resphinx-build	src out
+        resphinx-build src out
+sphinx-build
+sphinx-build src out
+sphinx-build	src out
+sphinx-builder
+sphinx-builder src out
+sphinx-builder	src out
+resphinx-build
+resphinx-build	src out
+resphinx-build src out

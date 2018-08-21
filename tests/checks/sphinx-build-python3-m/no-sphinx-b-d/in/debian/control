@@ -1,0 +1,9 @@
+Source: dummy-package
+Priority: optional
+Description: dummy-package description
+Build-Depends:
+ dummy,
+ dummy2,
+Build-Depends-Indep:
+ dummy3,
+ dummy4,

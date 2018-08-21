@@ -1,0 +1,7 @@
+Source: dummy-package
+Priority: optional
+Description: dummy-package description
+Build-Depends:
+ python-all,
+ python-sphinx,
+ python-mock,

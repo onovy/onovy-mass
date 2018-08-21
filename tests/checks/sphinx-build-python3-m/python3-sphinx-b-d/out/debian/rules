@@ -1,0 +1,23 @@
+#!/usr/bin/make -f
+
+override_dh_sphinxdoc:
+	python3 -m sphinx src out
+	python3 -m sphinx
+	sphinx-builder
+	resphinx-build
+        python3 -m sphinx	src out
+        python3 -m sphinx
+        sphinx-builder	src out
+        sphinx-builder
+        resphinx-build
+        resphinx-build	src out
+        resphinx-build src out
+python3 -m sphinx
+python3 -m sphinx src out
+python3 -m sphinx	src out
+sphinx-builder
+sphinx-builder src out
+sphinx-builder	src out
+resphinx-build
+resphinx-build	src out
+resphinx-build src out
