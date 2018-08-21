@@ -19,6 +19,8 @@ fi
 # Python
 if grep-dctrl -q -F Maintainer "python-modules-team@lists.alioth.debian.org" debian/control ||
    grep-dctrl -q -F Uploaders "python-modules-team@lists.alioth.debian.org" debian/control ||
+   grep-dctrl -q -F Maintainer "team+python-modules@tracker.debian.org" debian/control ||
+   grep-dctrl -q -F Uploaders "team+python-modules@tracker.debian.org" debian/control ||
    grep-dctrl -q -F Maintainer "python-apps-team@lists.alioth.debian.org" debian/control ||
    grep-dctrl -q -F Uploaders "python-apps-team@lists.alioth.debian.org" debian/control
    then
