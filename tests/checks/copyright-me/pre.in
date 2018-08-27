@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # Git
 git init >/dev/null
 git commit --author "$DEBFULLNAME <$DEBEMAIL>" -m "Dummy commit" --allow-empty >/dev/null

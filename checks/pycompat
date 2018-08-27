@@ -1,4 +1,6 @@
 #!/bin/bash
 
+set -e
+
 rm -f debian/pycompat
 echo "Remove debian/pycompat, it's not used by any modern Python helper"

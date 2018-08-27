@@ -1,15 +1,16 @@
 #!/bin/sh
 
+set -e
+
 if [ ! -e debian/control ] ; then
-    echo "$(basename ${PWD}): not a debian package"
+    echo "$(basename "$PWD"): not a debian package"
     exit 0
 fi
 
 DIR=$(dirname "$(readlink -f "$0")")
 PUSH=
 
-git diff-index --quiet HEAD --
-if [ $? -ne 0 ] ; then
+if ! git diff-index --quiet HEAD -- ; then
     echo "Local git tree has changes"
     exit 1
 fi
@@ -21,11 +22,9 @@ for CHECK in $DIR/checks/* ; do
         echo "Not executable, skipping..."
         continue
     fi
-    OUT=$($CHECK)
-    STATUS=$?
-    if [ $STATUS -eq 0 ] ; then
+    if OUT=$($CHECK) ; then
         if [ -n "$OUT" ] ; then
-            if $DIR/commit "$OUT" ; then
+            if "$DIR/commit" "$OUT" ; then
                 PUSH=1
             fi
         fi

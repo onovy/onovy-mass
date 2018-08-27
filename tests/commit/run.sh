@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 DIR=$(dirname "$(readlink -f "$0")")
 
 PASS=0
@@ -16,26 +18,28 @@ for CHECK in $DIR/* ; do
         if [ ! -d "$TEST" ] ; then
             continue
         fi
-        echo -n $(basename "$TEST")": "
+        echo -n "$(basename "$TEST"): "
         rm -rf test
         cp -r "$TEST" test
         pushd test >/dev/null
+        set +e
         ../../../../commit "#MESSAGE#" --test
         STATUS=$?
-        DIFF=$(diff -Naur --exclude=.git test "$TEST")
+        set -e
+        DIFF=$(diff -Naur --exclude=.git test "$TEST" || true)
         popd >/dev/null
 
         if [ "$STATUS" -ne 0 ] ; then
-            FAIL=$(($FAIL + 1))
+            FAIL=$((FAIL + 1))
             echo "Exit status $STATUS"
         elif [ "$CHECK" == "dch" ] && [ "$DIFF" == "" ] ; then
-            FAIL=$(($FAIL + 1))
+            FAIL=$((FAIL + 1))
             echo "FAIL"
         elif [ "$CHECK" == "no-dch" ] && [ "$DIFF" != "" ] ; then
-            FAIL=$(($FAIL + 1))
+            FAIL=$((FAIL + 1))
             echo "FAIL"
         else
-            PASS=$(($PASS + 1))
+            PASS=$((PASS + 1))
             echo "OK"
         fi
 

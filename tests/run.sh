@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 DIR=$(dirname "$(readlink -f "$0")")
 
 FAIL=0
@@ -12,14 +14,13 @@ for CHECK in $DIR/* ; do
     CHECK_NAME=$(basename "$CHECK")
     echo "######## $CHECK_NAME ########"
     pushd "$CHECK" >/dev/null
-    ./run.sh
-    STATUS=$?
 
-    if [ "$STATUS" -ne 0 ] ; then
-        FAIL=$(($FAIL + 1))
+    if ./run.sh ; then
+        PASS=$((PASS + 1))
     else
-        PASS=$(($PASS + 1))
+        FAIL=$((FAIL + 1))
     fi
+
     popd >/dev/null
     echo ""
 done

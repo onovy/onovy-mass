@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 if grep-dctrl -q -X -F XS-Testsuite 'autopkgtest' debian/control ; then
     sed -i "/^XS-Testsuite: *autopkgtest *$/d" debian/control
     echo "d/control: Remove XS-Testsuite field, not needed anymore"

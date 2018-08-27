@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 if [ "$#" -ne 1 ]; then
     echo "$0 <repository_name>"
     exit 1
@@ -17,11 +19,12 @@ pushd "$TMP" >/dev/null
 
 rm -rf repo
 git clone "${URL}/${REPO}" repo >/dev/null 2>&1
-cd repo
 
-$DIR/check-all
+(
+cd repo || exit
+"$DIR/check-all"
+)
 
-cd ..
 popd >/dev/null
 
 rm -rf "$TMP"

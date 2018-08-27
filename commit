@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 if [ "$#" -lt 1 ]; then
     echo "$0 <message> [--test]"
     exit 1
@@ -10,7 +12,8 @@ MESSAGE=$1
 if [ -n "$(git diff)" ] || [ "$2" == "--test" ] ; then
     CHANGELOG=$(dpkg-parsechangelog)
 
-    cat debian/changelog | grep '^ --' | wc -l | grep -q "^1$"
+    set +e
+    grep -c '^ --' debian/changelog | grep -q "^1$"
     ONE_ENTRY=$?
 
     echo "$CHANGELOG" | grep -q '^Distribution: UNRELEASED$'
@@ -18,17 +21,17 @@ if [ -n "$(git diff)" ] || [ "$2" == "--test" ] ; then
 
     echo "$CHANGELOG" | grep '^  ' | sed 's/   \* //' | grep -F -q "$MESSAGE"
     PRESENT=$?
+    set -e
 
     if ! (
             ([ $UNRELEASED -eq 0 ] && [ $PRESENT -eq 0 ]) || \
             ([ $ONE_ENTRY -eq 0 ] && [ $UNRELEASED -eq 0 ])
          ); then
 
-        MAINTAINER=$(grep-dctrl -n -F Maintainer '' -s Maintainer debian/control)
+        MAINTAINER=$(grep-dctrl -n -F Maintainer '' -s Maintainer debian/control || true)
         case $MAINTAINER in
             *debian-multimedia@lists.debian.org*) ;;
             *pkg-multimedia-maintainers@lists.alioth.debian.org*) ;;
-            *debian-multimedia@lists.debian.org*) ;;
             *pkg-salt-team@lists.alioth.debian.org*) ;;
             *)
                 dch --no-auto-nmu "$MESSAGE"

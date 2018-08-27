@@ -1,5 +1,6 @@
 #!/bin/bash
 
+set -e
 
 MESSAGE="d/control: Removing redundant Priority field in binary package"
 

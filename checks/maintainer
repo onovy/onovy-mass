@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # Debian Multimedia Team
 if grep-dctrl -q -F Maintainer "debian-multimedia@lists.debian.org" debian/control ; then
     sed -i "s#\(^Maintainer:\).*#\1 Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>#g" debian/control

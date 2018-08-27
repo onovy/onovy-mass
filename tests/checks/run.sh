@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 DIR=$(dirname "$(readlink -f "$0")")
 
 export DEBFULLNAME="#DEBFULLNAME#"
@@ -23,7 +25,7 @@ for CHECK in $DIR/* ; do
             continue
         fi
         pushd "$TEST" >/dev/null
-        echo -n $(basename "$TEST")": "
+        echo -n "$(basename "$TEST"): "
         rm -rf test.in test.out
         cp -r in test.in
 
@@ -46,34 +48,36 @@ for CHECK in $DIR/* ; do
         fi
         popd >/dev/null
 
-        MESSAGE=$(../../../../../checks/$CHECK_NAME)
+        set +e
+        MESSAGE="$("../../../../../checks/$CHECK_NAME")"
         STATUS=$?
+        set -e
         popd >/dev/null
 
-        EXP_MESSAGE=$(cat message 2>/dev/null)
-        DIFF=$(diff -Naur --exclude=.git test.in test.out)
+        EXP_MESSAGE=$(cat message 2>/dev/null || true)
+        DIFF=$(diff -Naur --exclude=.git test.in test.out || true)
 
         if [ "$STATUS" -ne 0 ] ; then
             if [ -e "fail" ] ; then
-                PASS=$(($PASS + 1))
+                PASS=$((PASS + 1))
                 echo "OK"
             else
-                FAIL=$(($FAIL + 1))
+                FAIL=$((FAIL + 1))
                 echo "Exit status $STATUS"
             fi
         elif [ "$DIFF" != "" ] ; then
-            FAIL=$(($FAIL + 1))
+            FAIL=$((FAIL + 1))
             echo "Diff"
             echo "#############################"
             echo "$DIFF"
             echo "#############################"
         elif [ "$EXP_MESSAGE" != "" ] && [ "$EXP_MESSAGE" != "$MESSAGE" ] ; then
-            FAIL=$(($FAIL + 1))
+            FAIL=$((FAIL + 1))
             echo "Wrong message"
             echo "Expected: $EXP_MESSAGE"
             echo "Got:      $MESSAGE"
         else
-            PASS=$(($PASS + 1))
+            PASS=$((PASS + 1))
             echo "OK"
         fi
 

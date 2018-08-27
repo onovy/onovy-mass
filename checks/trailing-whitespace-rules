@@ -1,4 +1,6 @@
 #!/bin/bash
 
+set -e
+
 sed -i -e 's@[ ]*$@@g' debian/rules
 echo "d/rules: Remove trailing whitespaces"

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # OpenStack
 if ! grep-dctrl -q -F Maintainer "openstack-devel@lists.alioth.debian.org" debian/control &&
    ! grep-dctrl -q -F Maintainer "team+openstack@tracker.debian.org" debian/control
