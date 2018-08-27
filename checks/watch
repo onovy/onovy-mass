@@ -1,5 +1,12 @@
 #!/bin/bash
 
+set -e
+
+if [ ! -e debian/watch ] ; then
+    echo "No d/watch file"
+    exit 0
+fi
+
 sed -i "s#http://\(github.com/\)#https://\1#g" debian/watch 2>/dev/null
 sed -i "s#http://\(tarballs.openstack.org/\)#https://\1#g" debian/watch 2>/dev/null
 sed -i "s#http://\(pypi.debian.net/\)#https://\1#g" debian/watch 2>/dev/null
