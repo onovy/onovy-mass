@@ -1,5 +1,15 @@
 #!/bin/bash
 
-sed -i 's/$ADT_ARTIFACTS/$AUTOPKGTEST_ARTIFACTS/g' debian/tests/* 2>/dev/null
-sed -i 's/${ADT_ARTIFACTS}/${AUTOPKGTEST_ARTIFACTS}/g' debian/tests/* 2>/dev/null
+set -e
+
+if [ ! -d "debian/tests" ] ; then
+    echo "No autopkgtests"
+    exit 0
+fi
+
+find debian/tests -name '*' -type f -print0 |
+    while IFS= read -r -d $'\0' FILE; do
+        sed -i 's/$ADT_ARTIFACTS/$AUTOPKGTEST_ARTIFACTS/g' "$FILE" 2>/dev/null
+        sed -i 's/${ADT_ARTIFACTS}/${AUTOPKGTEST_ARTIFACTS}/g' "$FILE" 2>/dev/null
+    done
 echo "d/tests: Use AUTOPKGTEST_ARTIFACTS instead of ADT_ARTIFACTS"

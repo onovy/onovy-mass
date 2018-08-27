@@ -1,0 +1,1 @@
+d/tests: Use AUTOPKGTEST_ARTIFACTS instead of ADT_ARTIFACTS
