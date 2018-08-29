@@ -5,4 +5,5 @@ addons:
     - devscripts
     - python3-debian
     - git-dpm
+    - pristine-tar
 script: tests/run.sh
