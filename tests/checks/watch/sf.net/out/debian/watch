@@ -1,0 +1,6 @@
+version=3
+# X.Y.Z-beta comes before X.Y.Z
+opts=\
+pgpsigurlmangle=s/$/.asc/,\
+uversionmangle=s/-/~/ \
+    https://sf.net/vifm/vifm-(.*)\.tar\.bz2

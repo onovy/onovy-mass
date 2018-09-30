@@ -10,5 +10,6 @@ fi
 sed -i "s#http://\(github.com/\)#https://\1#g" debian/watch 2>/dev/null
 sed -i "s#http://\(tarballs.openstack.org/\)#https://\1#g" debian/watch 2>/dev/null
 sed -i "s#http://\(pypi.debian.net/\)#https://\1#g" debian/watch 2>/dev/null
+sed -i "s#http://\(sf.net/\)#https://\1#g" debian/watch 2>/dev/null
 
 echo "d/watch: Use https protocol"
