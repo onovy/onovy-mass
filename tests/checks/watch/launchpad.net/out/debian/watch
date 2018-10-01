@@ -1,0 +1,2 @@
+version=3
+https://launchpad.net/fatrace/+download .*/fatrace-([0-9.]+)\.tar\.bz2
