@@ -34,7 +34,7 @@ if [ -n "$(git diff)" ] || [ "$2" == "--test" ] ; then
             *pkg-multimedia-maintainers@lists.alioth.debian.org*) ;;
             *pkg-salt-team@lists.alioth.debian.org*) ;;
             *)
-                dch --no-auto-nmu "$MESSAGE"
+                dch --no-auto-nmu "$MESSAGE."
             ;;
         esac
     fi
