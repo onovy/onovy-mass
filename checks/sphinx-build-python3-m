@@ -2,8 +2,8 @@
 
 set -e
 
-if grep-dctrl -q -F Build-Depends 'python3-sphinx' debian/control || 
-   grep-dctrl -q -F Build-Depends-Indep 'python3-sphinx' debian/control
+if grep-dctrl -q -F Build-Depends 'python3-sphinx' --and --not 'python-sphinx' debian/control ||
+   grep-dctrl -q -F Build-Depends-Indep 'python3-sphinx' --and --not 'python-sphinx' debian/control
    then
     sed -i "/^[[:space:]]*#/! s#\([[:space:]]\|^\)sphinx-build\([[:space:]]\|$\)#\1python3 -m sphinx\2#g" debian/rules
     echo "Use 'python3 -m sphinx' instead of sphinx-build for building docs"

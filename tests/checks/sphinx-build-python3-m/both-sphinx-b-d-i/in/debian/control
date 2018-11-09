@@ -1,0 +1,7 @@
+Source: dummy-package
+Priority: optional
+Description: dummy-package description
+Build-Depends-Indep:
+ python-all,
+ python-mock,
+ python-sphinx | python3-sphinx,
