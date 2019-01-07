@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+
+if [ ! -e "debian/tests/control.autodep8" ] ; then
+    echo "No debian/tests/control.autodep8"
+    exit 0
+fi
+
+mv debian/tests/control.autodep8 debian/tests/control
+echo "Rename d/tests/control.autodep8 to d/tests/control"
