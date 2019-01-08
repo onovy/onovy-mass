@@ -7,5 +7,10 @@ if [ ! -e "debian/tests/control.autodep8" ] ; then
     exit 0
 fi
 
+if [ -e "debian/tests/control" ] ; then
+    echo "Both debian/tests/control and debian/tests/control.autodep8 exists!"
+    exit 1
+fi
+
 mv debian/tests/control.autodep8 debian/tests/control
 echo "Rename d/tests/control.autodep8 to d/tests/control"
