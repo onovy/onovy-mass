@@ -1,0 +1,27 @@
+#!/bin/bash
+
+set -e
+
+if ! [ -a "debian/compat" ] ; then
+    echo "No debian/compat"
+    exit 0
+fi
+
+COMPAT=$(cat debian/compat)
+if [ "$COMPAT" -lt 9 ] ;  then
+   echo "Too old debhelper compat level"
+   exit 0
+fi
+
+SEARCH="debhelper *[(] *>= *$COMPAT~\? *[)]"
+REPLACE="debhelper-compat (= $COMPAT)"
+
+if ! grep -q "$SEARCH" debian/control ; then
+   echo "debhelper line in debian/control not found"
+   exit 0
+fi
+
+sed -i "s/$SEARCH/$REPLACE/g" debian/control
+rm debian/compat
+
+echo "Use debhelper-compat instead of debian/compat"
