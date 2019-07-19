@@ -1,5 +1,5 @@
 Source: dummy-package
 Priority: optional
 Description: dummy-package description
-Depends:
+Build-Depends:
  debhelper (>= 8)
