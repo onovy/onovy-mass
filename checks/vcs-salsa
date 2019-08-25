@@ -55,13 +55,13 @@ if ! grep-dctrl -q -F Vcs-Browser 'salsa.debian.org' debian/control ; then
 fi
 
 # Vcs-Git is wrong
-if ! grep-dctrl -q -F Vcs-Git "$URL/$BROWSER" debian/control ; then
+if ! grep-dctrl -X -q -F Vcs-Git "$URL/$REPO" debian/control ; then
     MESSAGE="d/control: Fix wrong Vcs-*"
     sed -i "s#\(^Vcs-Git:\).*#\1 $URL/$REPO#g" debian/control
 fi
 
 # Vcs-Browser is wrong
-if ! grep-dctrl -q -F Vcs-Browser "$URL/$BROWSER" debian/control ; then
+if ! grep-dctrl -X -q -F Vcs-Browser "$URL/$BROWSER" debian/control ; then
     MESSAGE="d/control: Fix wrong Vcs-*"
     sed -i "s#\(^Vcs-Browser:\).*#\1 $URL/$BROWSER#g" debian/control
 fi

@@ -1,8 +1,8 @@
 Source: dummy-package
 Priority: optional
 Description: dummy-package description
-Vcs-Browser: https://salsa.debian.org/debian/project.git
-Vcs-Git: https://salsa.debian.org/debian/project
+Vcs-Browser: https://salsa.debian.org/debian/project
+Vcs-Git: https://salsa.debian.org/debian/project.git
 
 Package: dummy-binary-package
 Description: dummy-binary-package description
