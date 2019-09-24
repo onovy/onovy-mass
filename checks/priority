@@ -2,10 +2,10 @@
 
 set -e
 
-MESSAGE="d/control: Removing redundant Priority field in binary package"
+MESSAGE="d/control: Remove redundant Priority field in binary package"
 
 if grep-dctrl -q -F Priority 'extra' debian/control ; then
-    MESSAGE='d/control: Deprecating priority extra as per policy 4.0.1'
+    MESSAGE='d/control: Deprecate priority extra as per policy 4.0.1'
     sed -i "s#\(^Priority: *\)extra\$#\1optional#g" debian/control
 fi
 
