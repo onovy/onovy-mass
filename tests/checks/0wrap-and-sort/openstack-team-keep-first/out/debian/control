@@ -1,0 +1,10 @@
+Source: dummy-package
+Section: net
+Priority: optional
+Maintainer: Debian OpenStack <openstack-devel@lists.alioth.debian.org>
+
+Package: c
+
+Package: a
+
+Package: b

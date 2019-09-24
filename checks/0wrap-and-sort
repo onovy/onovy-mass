@@ -6,6 +6,6 @@ set -e
 if grep-dctrl -q -F Maintainer "openstack-devel@lists.alioth.debian.org" debian/control ||
    grep-dctrl -q -F Maintainer "team+openstack@tracker.debian.org" debian/control
    then
-    wrap-and-sort -bast
-    echo "Running wrap-and-sort -bast"
+    wrap-and-sort -bastk
+    echo "Running wrap-and-sort -bastk"
 fi
