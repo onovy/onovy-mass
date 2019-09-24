@@ -21,6 +21,11 @@ if ! grep -q "$SEARCH" debian/control ; then
    exit 0
 fi
 
+if grep -q "cdbs" debian/control ; then
+   echo "debhelper-compat is not compatible with cdbs"
+   exit 0
+fi
+
 sed -i "s/$SEARCH/$REPLACE/g" debian/control
 rm debian/compat
 
