@@ -1,0 +1,6 @@
+Source: dummy-package
+Priority: optional
+Description: dummy-package description
+Build-Depends:
+ debhelper-compat (= 12)
+Standards-Version: 4.3.0

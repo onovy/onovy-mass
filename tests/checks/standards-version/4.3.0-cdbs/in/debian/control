@@ -1,0 +1,6 @@
+Source: dummy-package
+Priority: optional
+Description: dummy-package description
+Build-Depends:
+ cdbs
+Standards-Version: 4.3.0

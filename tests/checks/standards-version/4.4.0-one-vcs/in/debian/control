@@ -1,0 +1,6 @@
+Source: dummy-package
+Priority: optional
+Description: dummy-package description
+Standards-Version: 4.4.0
+Vcs-Git: dummy
+Vcs-Browser: dummy
