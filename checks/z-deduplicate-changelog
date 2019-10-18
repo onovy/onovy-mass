@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -e
+
+sed -i '/ UNRELEASED;/,/^ --/{$!N; /^\(.*\)\n\1$/!P; D}' debian/changelog
+
+echo "!d/changelog: Deduplicate entries"

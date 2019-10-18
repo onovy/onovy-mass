@@ -8,6 +8,11 @@ if [ "$#" -lt 1 ]; then
 fi
 
 MESSAGE=$1
+NO_DCH=0
+if [[ $MESSAGE == !* ]] ; then
+    MESSAGE="${MESSAGE:1}"
+    NO_DCH=1
+fi
 
 if [ -n "$(git diff)" ] || [ "$2" == "--test" ] ; then
     CHANGELOG=$(dpkg-parsechangelog)
@@ -26,7 +31,7 @@ if [ -n "$(git diff)" ] || [ "$2" == "--test" ] ; then
     if ! (
             ([ $UNRELEASED -eq 0 ] && [ $PRESENT -eq 0 ]) || \
             ([ $ONE_ENTRY -eq 0 ] && [ $UNRELEASED -eq 0 ])
-         ); then
+         ) && [ $NO_DCH -eq 0 ] ; then
 
         MAINTAINER=$(grep-dctrl -n -F Maintainer '' -s Maintainer debian/control || true)
         case $MAINTAINER in
